@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+body {
+	font-family: sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.clock {
+	aspect-ratio: 1;
+	position: relative;
+	border-radius: 50%;
+	border: 1px solid;
+	max-width: 8rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.clock::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	aspect-ratio: 1;
+	width: 5%;
+	background-color: currentColor;
+	border-radius: 50%;
+	transform: translate(-50%, -50%)
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.clock__hours,
+.clock__minutes,
+.clock__seconds {
+	position: absolute;
+	top: 0;
+	width: 0;
+	left: 50%;
+	height: 50%;
+	transform-origin: 50% 100%;
+	display: grid;
+	align-items: end;
+	justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.clock__hours {
+	transform: rotate(calc(360deg / 12 * var(--hours)))
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.clock__minutes {
+	transform: rotate(calc(360deg / 60 * var(--minutes)))
+}
+
+.clock__seconds {
+	transform: rotate(calc(360deg / 60 * var(--seconds)))
+}
+
+
+.clock__hours::before,
+.clock__minutes::before,
+.clock__seconds::before {
+	content: '';
+	background-color: currentColor;
+}
+
+.clock__hours::before {
+	width: 6px;
+	height: 50%;
+}
+
+.clock__minutes::before {
+	width: 6px;
+	height: 90%;
+}
+
+.clock__seconds::before {
+	background-color: #ff0000;
+	height: 96%;
+	width: 2px;
 }
