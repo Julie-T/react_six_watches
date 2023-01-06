@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: sans-serif;
-}
-
 .clock {
   aspect-ratio: 1;
   position: relative;
@@ -21,7 +17,7 @@ body {
   left: 50%;
   aspect-ratio: 1;
   width: 5%;
-  background-color: currentColor;
+  background-color: black;
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
@@ -31,8 +27,8 @@ body {
 .clock__seconds {
   position: absolute;
   top: 0;
-  width: 0;
   left: 50%;
+  width: 0;
   height: 50%;
   transform-origin: 50% 100%;
   display: grid;
@@ -52,7 +48,7 @@ body {
 .clock__minutes::before,
 .clock__seconds::before {
   content: "";
-  background-color: currentColor;
+  background-color: black;
 }
 .clock__hours::before {
   width: 6px;
