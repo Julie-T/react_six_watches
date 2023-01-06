@@ -92,10 +92,12 @@ body {
 .clock-button {
   display: flex;
   align-self: flex-start;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   background-color: transparent;
-  
+  border: 2px solid #472c2c;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .main-block {

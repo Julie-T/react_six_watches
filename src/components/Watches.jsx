@@ -72,13 +72,19 @@ export class Watches extends Component {
 				        <span className="clock__minutes" />
 				        <span className="clock__seconds" />
 			        </div>
-                    <button className='clock-button' onClick={(e) => this.props.deleteClock(e, this.props.id)}>
-                        <HighlightOff style={{fontSize: 'small'}}/>
-                    </button>
+                    <HighlightOff className='clock-button' onClick={(e) => this.props.deleteClock(e, this.props.id)}/>
                 </div>
 		    </div>
         )
     }
+}
+
+Watches.propTypes = {
+    key: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    zone: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    deleteClock: PropTypes.func.isRequired
 }
 
 export default Watches
