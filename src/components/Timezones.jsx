@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Watches from './Watches'
 import { nanoid }  from 'nanoid'
+import '../App.css'
 
 export class Timezones extends Component {
 
@@ -12,6 +13,7 @@ export class Timezones extends Component {
             zone: '',
             id: ''
         }
+        this.deleteClock = this.deleteClock.bind(this);
     }
 
     nameHandleChange(e) {
@@ -24,19 +26,51 @@ export class Timezones extends Component {
 
     timezoneHandleChange(e) {
         e.preventDefault();
-        this.setState({timezones: [...this.state.timezones, {name: this.state.name, zone: this.state.zone, id: nanoid()}]})
+        this.setState({timezones: 
+            [...this.state.timezones, 
+            {
+                name: this.state.name, 
+                zone: this.state.zone, 
+                id: nanoid() 
+            }]})
         this.setState({name: ''})
         this.setState({zone: ''})
     }
 
+
+    // componentDidMount () {
+    //     document.addEventListener(
+    //         'click',
+    //         this.deleteClock
+    //     )
+    // }
+
+    deleteClock (e, id) {
+        e.preventDefault();
+        if (id) {
+            this.setState({timezones: 
+                this.state.timezones.filter(
+                elem => elem.id !== id
+            )})
+        }
+    }
+
+    // componentWillUnmount() {
+    //     document.removeEventListener(
+    //         'click',
+    //         this.deleteClock
+    //     )
+    // }
+
+
     render() {
         return (
-        <div>
-            <div>
-                <div className='block-input-name'>
-                    <div className='input-name-label'>Название</div>
+        <div className='main-block'>
+            <div className='block-timezone'>
+                <div className='block-input-name block-input'>
+                    <div className='input-name-label label'>Название</div>
                     <input 
-                        className='input-name' 
+                        className='input-name input' 
                         type='text' 
                         value={this.state.name}
                         onChange={(e) => this.nameHandleChange(e)}
@@ -45,10 +79,10 @@ export class Timezones extends Component {
                         required
                     />
                 </div>
-                <div className='block-input-zone'>
-                    <div className='input-name-zone'>Временная зона</div>
+                <div className='block-input-zone block-input'>
+                    <div className='input-zone-label label'>Временная зона</div>
                     <input 
-                        className='input-zone' 
+                        className='input-zone input' 
                         type='text'
                         value={this.state.zone}
                         onChange={(e) => this.zoneHandleChange(e)}
@@ -57,12 +91,19 @@ export class Timezones extends Component {
                     />
                 </div>
                 <button 
-                    className='button' 
+                    className='button-name-zone button' 
                     type='submit' 
                     onClick={(e) => this.timezoneHandleChange(e)}
                 >Добавить</button>
             </div>
-            {this.state.timezones.map((timezone) =>  <Watches name={timezone.name} zone={timezone.zone} key={timezone.id}/>)}
+            <div className='all-clocks'>
+                {this.state.timezones.map((timezone) =>  
+                <Watches key={timezone.id} 
+                name={timezone.name} 
+                zone={timezone.zone} 
+                id={timezone.id} 
+                deleteClock={this.deleteClock}/>)}
+            </div>
         </div>
         )
     }

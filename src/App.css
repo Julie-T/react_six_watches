@@ -1,73 +1,159 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
-	font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 .clock {
-	aspect-ratio: 1;
-	position: relative;
-	border-radius: 50%;
-	border: 1px solid;
-	max-width: 8rem;
+  aspect-ratio: 1;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid;
+  width: 100px;
 }
-
 .clock::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	aspect-ratio: 1;
-	width: 5%;
-	background-color: currentColor;
-	border-radius: 50%;
-	transform: translate(-50%, -50%)
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  width: 5%;
+  background-color: currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .clock__hours,
 .clock__minutes,
 .clock__seconds {
-	position: absolute;
-	top: 0;
-	width: 0;
-	left: 50%;
-	height: 50%;
-	transform-origin: 50% 100%;
-	display: grid;
-	align-items: end;
-	justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 0;
+  left: 50%;
+  height: 50%;
+  transform-origin: 50% 100%;
+  display: grid;
+  align-items: end;
+  justify-content: center;
 }
-
 .clock__hours {
-	transform: rotate(calc(360deg / 12 * var(--hours)))
+  transform: rotate(calc(360deg / 12 * var(--hours)));
 }
-
 .clock__minutes {
-	transform: rotate(calc(360deg / 60 * var(--minutes)))
+  transform: rotate(calc(360deg / 60 * var(--minutes)));
 }
-
 .clock__seconds {
-	transform: rotate(calc(360deg / 60 * var(--seconds)))
+  transform: rotate(calc(360deg / 60 * var(--seconds)));
 }
-
-
 .clock__hours::before,
 .clock__minutes::before,
 .clock__seconds::before {
-	content: '';
-	background-color: currentColor;
+  content: "";
+  background-color: currentColor;
 }
-
 .clock__hours::before {
-	width: 6px;
-	height: 50%;
+  width: 6px;
+  height: 50%;
 }
-
 .clock__minutes::before {
-	width: 6px;
-	height: 90%;
+  width: 6px;
+  height: 90%;
+}
+.clock__seconds::before {
+  background-color: #ff0000;
+  height: 96%;
+  width: 2px;
 }
 
-.clock__seconds::before {
-	background-color: #ff0000;
-	height: 96%;
-	width: 2px;
+.block-clock {
+  display: block;
+  padding: 20px;
+}
+.clock-name {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 200;
+  font-family: "Gill Sans", Arial, sans-serif;
+  color: #000000c4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.block-clock-button {
+  display: flex;
+  flex-direction: row;
+}
+.clock-button {
+  display: flex;
+  align-self: flex-start;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  
+}
+
+.main-block {
+  display: block;
+  width: 80%;
+}
+
+.block-timezone {
+  display: flex;
+  align-items: flex-end;
+  width: 60%;
+  height: 80px;
+}
+.block-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 30%;
+  height: 100%;
+}
+.input {
+  width: 80%;
+  height: 50%;
+}
+.label {
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 200;
+  font-family: "Gill Sans", Arial, sans-serif;
+  color: #000000c4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.button-name-zone, input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 20%;
+  height: 40px;
+  cursor: pointer;
+  border: 2px solid #472c2c;
+  text-decoration: none;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 200;
+  font-family: "Gill Sans", Arial, sans-serif;
+  color: #000000c4;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.all-clocks {
+  display: flex;
+  flex-wrap: wrap;
 }
